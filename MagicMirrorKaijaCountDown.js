@@ -21,7 +21,6 @@ Module.register('MagicMirrorKaijaCountDown', {
     socketNotificationReceived: function (notification, payload) {
         switch (notification) {
             case "RUN":
-                Log.log("???????????????/");
                 this.daysLeft = payload.timeRemaing;
                 this.updateDom();
                 break
