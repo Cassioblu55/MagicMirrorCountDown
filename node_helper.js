@@ -1,34 +1,32 @@
 var NodeHelper = require("node_helper");
 var schedule = require('node-schedule');
 var DateDiff = require('date-diff');
+var numeral = require('numeral');
 
 // add require of other javascripot components here
 // var xxx = require('yyy') here
 
 module.exports = NodeHelper.create({
 
-    start() {
-        this.foo = 0;
+    getMinutesLeft() {
+        let diff = Math.floor(new DateDiff(new Date(2021, 10, 5), new Date()).minutes());
+        var formatted = numeral(diff).format('0,0');
+        return formatted;
     },
 
-    getDaysLeft() {
-        let diff = new DateDiff(new Date(2021, 10, 5), new Date()).days()
-        return Math.floor(diff);
-    },
-
-    sendDaysLeft() {
+    sendMinutesLeft() {
         this.sendSocketNotification('RUN',
             {
-                timeRemaing: this.getDaysLeft()
+                timeRemaing: this.getMinutesLeft()
             });
     },
 
     socketNotificationReceived: function (notification, payload) {
         if (notification === 'START') {
-            this.sendDaysLeft();
+            this.sendMinutesLeft();
             var self = this;
-            var j = schedule.scheduleJob('0 0 * * *', function () {
-                self.sendDaysLeft();
+            var j = schedule.scheduleJob('*/1 * * * *', function () {
+                self.sendMinutesLeft();
             });
 
         }
