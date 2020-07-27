@@ -9,7 +9,7 @@ var numeral = require('numeral');
 module.exports = NodeHelper.create({
 
     getMinutesLeft() {
-        let diff = Math.floor(new DateDiff(new Date(2021, 10, 5), new Date()).minutes());
+        let diff = Math.floor(new DateDiff(new Date(2020, 8, 24), new Date()).minutes());
         var formatted = numeral(diff).format('0,0');
         return formatted;
     },
