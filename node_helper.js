@@ -10,7 +10,7 @@ module.exports = NodeHelper.create({
 
     getMinutesLeft() {
         let diff = Math.floor(new DateDiff(new Date(2020, 7, 24), new Date()).minutes());
-git        var formatted = numeral(diff).format('0,0');
+        var formatted = numeral(diff).format('0,0');
         return formatted;
     },
 
