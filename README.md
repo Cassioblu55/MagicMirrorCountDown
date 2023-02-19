@@ -1,1 +1,1 @@
-# MagicMirrorKaijaCountDown
+# MagicMirrorCountDown
